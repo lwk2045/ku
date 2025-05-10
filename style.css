@@ -21,7 +21,7 @@ body::before {
 
 .fids-main {
   max-width: 950px;
-  margin: 40px auto;
+  margin: 20px auto;
   border-radius: 10px;
   overflow: hidden;
   background: #A50034;
@@ -107,21 +107,61 @@ body::before {
 }
 .fids-row {
   display: flex;
-  font-size: 1.08em;
+  font-size: 1em;
   font-weight: 500;
   transition: background 0.4s;
-  min-height: 38px;
+  height: 32px;
 }
 .row-blue { background: #002147; color: #fff; }
 .row-gray { background: #e0e0e0; color: #222; }
 .fids-cell {
   flex: 1;
   text-align: center;
-  padding: 8px 0;
+  padding: 4px 0;
   position: relative;
-  transition: all 0.5s ease;
-  transform-origin: center;
-  perspective: 1000px;
+  overflow: hidden;
+  height: 32px;
+}
+.fids-cell-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95em;
+}
+.fids-cell-content.old {
+  animation: slideOut 0.5s forwards;
+}
+.fids-cell-content.new {
+  animation: slideIn 0.5s forwards;
+}
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.row-blue .fids-cell {
+  background: #002147;
+  color: #fff;
+}
+.row-gray .fids-cell {
+  background: #e0e0e0;
+  color: #222;
 }
 .flip-container {
   position: relative;
@@ -153,10 +193,6 @@ body::before {
 .fids-cell.flipping + .fids-cell + .fids-cell {
   transform: rotateX(90deg);
   opacity: 0;
-}
-.fids-cell.new-content {
-  transform: rotateX(0deg);
-  opacity: 1;
 }
 .star { color: #FFD700; margin-left: 2px; font-size: 1.1em; }
 .live-bar {
